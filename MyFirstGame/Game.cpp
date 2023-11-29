@@ -43,12 +43,7 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
     charachter ->move ((width() - charachter->width()) / 2, height() - charachter->height() - 160);
     connect(charachter, &QPushButton::clicked, this, &Game::CharForGame);
 
-    //create add gun
-    gun = new QPushButton("Silah Seç", this);
-                 gun -> setFixedSize(200,100);
-    gun ->  setFont(QFont("Arial", 16));
-    gun ->move ((width() - gun->width()) / 2, height() - gun->height() - 240);
-    connect(gun, &QPushButton::clicked, this, &Game::GunForGame);
+
 
 
     PlayMusic();
@@ -62,7 +57,7 @@ void Game::CharForGame(){
 
 
     charachter->hide();
-
+    gun->hide();
     int screenWidth = 1200;
     int screenHeight = 800;
 
@@ -133,6 +128,7 @@ void Game::startGame() {
 
     startButton->hide();
     charachter->hide();
+
     SetScene();
 
     // addPlayerToScreen(player);
