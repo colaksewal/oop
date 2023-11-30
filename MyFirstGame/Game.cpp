@@ -43,6 +43,12 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
     charachter ->move ((width() - charachter->width()) / 2, height() - charachter->height() - 160);
     connect(charachter, &QPushButton::clicked, this, &Game::CharForGame);
 
+    //gun screen for add Character
+    gun = new QPushButton("Silah Seç", this);
+                 gun -> setFixedSize(200,100);
+    gun ->  setFont(QFont("Arial", 16));
+    gun ->move ((width() - gun->width()) / 2, height() - gun->height() - 280);
+    connect(gun, &QPushButton::clicked, this, &Game::GunForGame);
 
 
 
@@ -55,43 +61,8 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
 void Game::CharForGame(){
 
 
-
     charachter->hide();
-    gun->hide();
-    int screenWidth = 1200;
-    int screenHeight = 800;
-
-    int sceneWidth = 1200;
-    int sceneHeight = 800;
-
-    float widthScale = static_cast<float>(screenWidth) / sceneWidth;
-    float heightScale = static_cast<float>(screenHeight) / sceneHeight;
-    float scale = std::min(widthScale, heightScale);
-    sceneWidth *= scale;
-    sceneHeight *= scale;
-
-    int sceneX = (screenWidth - sceneWidth) / 2;
-    int sceneY = (screenHeight - sceneHeight) / 2;
-
-    scene->setSceneRect(sceneX, sceneY, sceneWidth, sceneHeight);
-
-    setScene(scene);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setFixedSize(1200, 800);
-
-    // background
-    QPixmap backgroundImage(":image/images/51830000.jpg");
-    QGraphicsPixmapItem* backgroundItem = new QGraphicsPixmapItem(backgroundImage);
-    scene->addItem(backgroundItem);
-
-
-}
-
-
-void Game::GunForGame(){
-    charachter->hide();
-
+    gun -> hide();
     int screenWidth = 1200;
     int screenHeight = 800;
 
@@ -116,6 +87,42 @@ void Game::GunForGame(){
 
     // background
     QPixmap backgroundImage(":image/images/2615988.jpg");
+    QGraphicsPixmapItem* backgroundItem = new QGraphicsPixmapItem(backgroundImage);
+    scene->addItem(backgroundItem);
+
+
+}
+
+
+void Game::GunForGame(){
+
+    charachter->hide();
+    gun -> hide();
+
+    int screenWidth = 1200;
+    int screenHeight = 800;
+
+    int sceneWidth = 1200;
+    int sceneHeight = 800;
+
+    float widthScale = static_cast<float>(screenWidth) / sceneWidth;
+    float heightScale = static_cast<float>(screenHeight) / sceneHeight;
+    float scale = std::min(widthScale, heightScale);
+    sceneWidth *= scale;
+    sceneHeight *= scale;
+
+    int sceneX = (screenWidth - sceneWidth) / 2;
+    int sceneY = (screenHeight - sceneHeight) / 2;
+
+    scene->setSceneRect(sceneX, sceneY, sceneWidth, sceneHeight);
+
+    setScene(scene);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setFixedSize(1200, 800);
+
+    // background
+    QPixmap backgroundImage(":image/images/5183000.jpg");
     QGraphicsPixmapItem* backgroundItem = new QGraphicsPixmapItem(backgroundImage);
     scene->addItem(backgroundItem);
 
