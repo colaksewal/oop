@@ -19,7 +19,7 @@ EnemyChild::EnemyChild(QGraphicsItem *parent) : Enemy(parent)
 void EnemyChild::move()
 {
     // Çaprazdan hareket etmek için x ve y pozisyonlarını güncelle
-    setPos(x() + 5, y() + 5);
+    setPos(x() + 5, y()+5);
 
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (QGraphicsItem *item : colliding_items) {

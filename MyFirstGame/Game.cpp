@@ -135,7 +135,7 @@ void Game::startGame() {
 
     startButton->hide();
     charachter->hide();
-
+    gun -> hide();
     SetScene();
 
     // addPlayerToScreen(player);
