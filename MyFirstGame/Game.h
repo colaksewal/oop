@@ -14,11 +14,7 @@
 class Game: public QGraphicsView
 {
 
-    struct CharacterInfo {
-        QString imagePath;
-        QGraphicsPixmapItem* characterBox;
-        QPushButton* selectButton;
-    };
+
 public:
     Game(QWidget * parent= 0 );
 
@@ -36,7 +32,6 @@ public:
     void CharForGame();
     void GunForGame();
     void gameOver();
-    void startSecondPlayer();
     void handleKeyPress();
     void addPlayerToScreen(Player *player);
     void PlayMusic();
@@ -44,8 +39,7 @@ public:
 
 
 
-private slots:
-    void handleTimerExpired();
+
 };
 
 #endif // GAME_H
