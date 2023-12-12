@@ -13,6 +13,7 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 
 Player::~Player()
 {
+    delete selectedCharacter;
     // bullets vectoründeki tüm mermileri temizleme
     for (Bullet* bullet : bullets) {
         scene()->removeItem(bullet);
@@ -85,4 +86,21 @@ void Player::decreaseOpacity(double amount = 0.2)
     setGraphicsEffect(opacityEffect);
 }
 
+void Player::characterSelected(const QString& characterName) {
+    // Handle character selection
+    // You can use characterName to identify the selected character
+    qDebug() << "Selected Character:" << characterName;
+
+    // Store the selected character or perform other actions
+    // For example, you can create an instance of the selected character
+    // and add it to the scene, or change the player's appearance based on the selection
+    if (selectedCharacter) {
+        scene()->removeItem(selectedCharacter);
+        delete selectedCharacter;
+    }
+
+    selectedCharacter = new Character(":image/images/selected_character.png");
+    scene()->addItem(selectedCharacter);
+    selectedCharacter->setPos(x(), y());
+}
 
