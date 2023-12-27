@@ -14,6 +14,8 @@ Enemy::Enemy(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem()
     int random_number = rand() % 1200;
     setPos(random_number,0);
 
+
+
     //drew the rect
     setPixmap(QPixmap(":image/images/enemy1.png"));
     //Alaşağı ediyor fotoğrafı

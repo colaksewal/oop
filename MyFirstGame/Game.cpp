@@ -4,8 +4,7 @@
 #include <QFont>
 #include "Score.h"
 #include <QGraphicsOpacityEffect>
-#include <QMediaPlayer>
-#include <QAudioOutput>
+
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QDebug>
@@ -52,7 +51,8 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
 
 
 
-    PlayMusic();
+
+    //PlayMusic();
 
     // Create countdown timer
 
@@ -211,7 +211,7 @@ void Game::addPlayerToScreen(Player* player) {
     player->setGraphicsEffect(dropShadowEffect);
 }
 
-void Game::PlayMusic() {
+/*void Game::PlayMusic() {
     // play background music
     QMediaPlayer* music = new QMediaPlayer();
     QAudioOutput* audioOutput = new QAudioOutput();
@@ -219,7 +219,7 @@ void Game::PlayMusic() {
     music->setSource(QUrl("qrc:/musics/sounds.mp3"));
     audioOutput->setVolume(5);
     music->play();
-}
+}*/
 
 void Game::gameOver() {
     // Clear existing scene
