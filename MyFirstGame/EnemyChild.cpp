@@ -5,7 +5,7 @@
 
 extern Game *game;
 
-EnemyChild::EnemyChild(QGraphicsItem *parent) : Enemy(parent)
+EnemyChild::EnemyChild(QGraphicsItem *parent, int velocity) : Enemy(parent)
 {
     // Farklı bir görsel atanabilir
     setPixmap(QPixmap(":image/images/enemy2.png"));
@@ -13,7 +13,8 @@ EnemyChild::EnemyChild(QGraphicsItem *parent) : Enemy(parent)
     QTimer * timer = new QTimer();
     connect(timer,SIGNAL(timeout() ) , this,SLOT(move()));
 
-    timer -> start(100);
+    this-> velocity = velocity;
+    timer -> start(velocity);
 }
 
 void EnemyChild::move()

@@ -7,11 +7,16 @@
 class Bullet : public QObject,  public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Bullet(QGraphicsItem *parent = 0);
+    Bullet(QGraphicsItem *parent = 0, int gunIndex = 0);
     bool operator==(const Bullet& other) const;
+    int gunIndex;
+
+
 public slots:
     void move();
     void move1();
+
+
 
 };
 

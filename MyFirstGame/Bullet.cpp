@@ -11,10 +11,14 @@
 extern Game * game ;// there is an external global object called game
 
 
-Bullet::Bullet(QGraphicsItem *parent):QObject () ,QGraphicsPixmapItem(parent)
+Bullet::Bullet(QGraphicsItem *parent , int gunIndex):QObject () ,QGraphicsPixmapItem(parent)
 {
+    this->gunIndex = gunIndex;
+
+    qDebug() << "Gun" << gunIndex << "raised.";
+
     //draw the rect
-    setPixmap(QPixmap(":image/images/bullet.png"));
+    setPixmap(QPixmap(":image/images/bullet" + QString::number(gunIndex + 1) + ".png"));
 
     //connect
     QTimer * timer = new QTimer();
@@ -27,6 +31,8 @@ Bullet::Bullet(QGraphicsItem *parent):QObject () ,QGraphicsPixmapItem(parent)
 
     timer1 -> start(50);
 }
+
+
 
 void Bullet :: move1(){
 

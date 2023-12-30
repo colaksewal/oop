@@ -9,7 +9,7 @@
 extern Game *game;
 extern Player *player;
 
-Enemy::Enemy(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem()
+Enemy::Enemy(QGraphicsItem *parent, int velocity): QObject(), QGraphicsPixmapItem()
 {   //set random position
     int random_number = rand() % 1200;
     setPos(random_number,0);
@@ -24,7 +24,9 @@ Enemy::Enemy(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem()
     QTimer * timer = new QTimer();
     connect(timer,SIGNAL(timeout() ) , this,SLOT(move()));
 
-    timer -> start(110);
+
+    this-> velocity = velocity;
+    timer -> start(velocity);
 }
 
 

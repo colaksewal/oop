@@ -11,18 +11,23 @@
 class Player:public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Player(QGraphicsItem * parent=0);
+    Player(QGraphicsItem * parent=0, int gunIndex = 0);
     ~Player();
 
     void keyPressEvent(QKeyEvent * event);
 public slots:
-    void spawn();
-    void spawn1();
+    void spawn(int velocity);
+    void spawn1(int velocity);
     void decreaseOpacity(double amount);
     void characterSelected(const QString& characterName);
+
+
 private:
     std::vector<Bullet*> bullets;
     Character* selectedCharacter;
+    int gunIndex;
+    int velocity;
 };
+
 
 #endif // PLAYER_H

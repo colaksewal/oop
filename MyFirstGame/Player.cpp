@@ -7,8 +7,11 @@
 #include <QGraphicsOpacityEffect>
 
 
-Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
+Player::Player(QGraphicsItem *parent, int gunIndex): QGraphicsPixmapItem(parent){
 
+    this-> gunIndex = gunIndex;
+
+    qDebug() << "Gun" << gunIndex << "player.";
 }
 
 Player::~Player()
@@ -39,14 +42,15 @@ void Player::keyPressEvent(QKeyEvent *event)
         //create a bulletwith a vector
         int randomX = rand() % 100; // 100, player genişliğine göre
         int randomX1 = rand() % 100 ;
+
         // Create the first bullet
-        Bullet *bullet1 = new Bullet();
+        Bullet *bullet1 = new Bullet(nullptr, gunIndex);
         bullet1->setPos(x()+ randomX1, y());
         scene()->addItem(bullet1);
         bullets.push_back(bullet1);  // Vector'e bullet1 ekleme
 
         // Create the second bullet with a slight offset to the right
-        Bullet *bullet2 = new Bullet();
+        Bullet *bullet2 = new Bullet(nullptr, gunIndex);
         bullet2->setPos(x() + randomX, y()); // Örnek olarak, 70 birim sağa kaydırıldı
         scene()->addItem(bullet2);
         bullets.push_back(bullet2);
@@ -64,17 +68,19 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void Player::spawn(){
+void Player::spawn(int velocity){
     // create an enemy
-    Enemy * enemy = new Enemy();
+     qDebug() << "velocity";
+    qDebug() << velocity;
+    Enemy * enemy = new Enemy(this, velocity);
     scene()->addItem(enemy);
 }
 
 
-void Player::spawn1()
+void Player::spawn1(int velocity)
 {
     //create an enemy
-    EnemyChild * enemy1 = new EnemyChild();
+    EnemyChild * enemy1 = new EnemyChild(this, velocity);
     scene() -> addItem(enemy1);
 
 }

@@ -8,8 +8,8 @@
 class Enemy : public QObject,  public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    explicit Enemy(QGraphicsItem *parent = nullptr);
-
+    explicit Enemy(QGraphicsItem *parent = nullptr, int velocity = 100);
+    int velocity;
 
 signals:
 
