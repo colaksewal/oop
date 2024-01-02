@@ -53,7 +53,7 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
 
 
     //level button
-    selectLevelButton = new QPushButton("Select Level",this);
+    selectLevelButton = new QPushButton("Selection",this);
     selectLevelButton->setFixedSize(200,100);
     selectLevelButton->setFont(QFont("Arial",16));
     selectLevelButton->move((width()-selectLevelButton->width())/2,height()-selectLevelButton->height()-420);
@@ -126,12 +126,13 @@ void Game::SelectLevel(){
     }
 
 
-    QPushButton* backButton = new QPushButton("Geri Dön");
-                              backButton->setGeometry(sceneWidth / 2 - 200, sceneHeight - 100, 200, 30);
+    QPushButton* backButton = new QPushButton("Next");
+                              backButton->setGeometry(sceneWidth / 2 - 100, sceneHeight - 200, 200, 30);
     scene->addWidget(backButton);
 
     // Connect the button clicked signal to the slot
-    connect(backButton, &QPushButton::clicked, this, &Game::goBack);
+    //connect(backButton, &QPushButton::clicked, this, &Game::goBack);
+    connect(backButton, &QPushButton::clicked, this, &Game::CharForGame);
 }
 
 
@@ -176,7 +177,7 @@ void Game::CharForGame(){
         scene->addItem(playerItem);
 
         // Create a QPushButton for each gun
-        QPushButton* gunButton = new QPushButton("Select");
+        QPushButton* gunButton = new QPushButton("Select character");
         gunButton->setGeometry(sceneWidth / 2 - (3 * playerWidth) / 2 + i * playerWidth, sceneHeight / 2 + playerHeight / 2, playerWidth, 30);
         scene->addWidget(gunButton);
 
@@ -184,12 +185,13 @@ void Game::CharForGame(){
         connect(gunButton, &QPushButton::clicked, this, [this, i]() { onPlayerButtonClicked(i); });
     }
 
-    QPushButton* backButton = new QPushButton("Geri Dön");
-                              backButton->setGeometry(sceneWidth / 2 - 200, sceneHeight - 100, 200, 30);
+    QPushButton* backButton = new QPushButton("Next");
+                              backButton->setGeometry(sceneWidth / 2 - 100, sceneHeight - 200, 200, 30);
     scene->addWidget(backButton);
 
     // Connect the button clicked signal to the slot
-    connect(backButton, &QPushButton::clicked, this, &Game::goBack);
+    //connect(backButton, &QPushButton::clicked, this, &Game::goBack);
+    connect(backButton, &QPushButton::clicked, this, &Game::GunForGame);
 }
 
 
@@ -272,7 +274,7 @@ void Game::GunForGame() {
         scene->addItem(gunItem);
 
         // Create a QPushButton for each gun
-        QPushButton* gunButton = new QPushButton("Select");
+        QPushButton* gunButton = new QPushButton("Select gun");
         gunButton->setGeometry(sceneWidth / 2 - (3 * gunWidth) / 2 + i * gunWidth, sceneHeight / 2 + gunHeight / 2, gunWidth, 30);
         scene->addWidget(gunButton);
 
@@ -280,16 +282,10 @@ void Game::GunForGame() {
         connect(gunButton, &QPushButton::clicked, this, [this, i]() { onGunButtonClicked(i); });
     }
 
-    QPushButton* backButton = new QPushButton("Geri Dön");
-                              backButton->setGeometry(sceneWidth / 2 - 100, sceneHeight - 200, 200, 30);
-    scene->addWidget(backButton);
-
-    // Connect the button clicked signal to the slot
-    connect(backButton, &QPushButton::clicked, this, &Game::goBack);
-
-
 
 }
+
+
 
 void Game::onGunButtonClicked(int gunIndex) {
     // Handle gun selection logic here
