@@ -10,6 +10,7 @@
 #include "QPushButton"
 #include <QGraphicsProxyWidget>
 #include <QVector>
+#include <QPropertyAnimation>
 
 class Game: public QGraphicsView
 {
@@ -54,6 +55,7 @@ public:
     void startLevel1();
     void startLevel2();
     void startLevel3();
+    void animationFinished();
 
 
 

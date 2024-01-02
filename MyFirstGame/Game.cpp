@@ -8,6 +8,7 @@
 #include <QAudioOutput>
 #include <QBoxLayout>
 #include <QPushButton>
+#include <QPropertyAnimation>
 #include <QDebug>
 #include "Player.h"
 #include "Health.h"
@@ -30,8 +31,9 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
     scene->addItem(backgroundItem);
 
     // Create a start button for the Game screen
-    startButton = new QPushButton("Oyuna Başla", this);
+    startButton = new QPushButton("START", this);
                   startButton->setFixedSize(200, 50);
+                  startButton->setStyleSheet("background: green;color:white;");
     startButton->setFont(QFont("Arial", 16));
     startButton->move((width() - startButton->width()) / 2, height() - startButton->height() - 20);
 
@@ -68,6 +70,7 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
 
 void Game::SelectLevel(){
 
+    startButton ->hide();
     selectLevelButton ->hide();
     charachter->hide();
     gun -> hide();
@@ -104,19 +107,34 @@ void Game::SelectLevel(){
 
     for (int i = 0; i < 3; ++i) {
         // Create a QPushButton for each level
-        QPushButton* levelButton = new QPushButton("Select Level " + QString::number(i + 1));
-        levelButton->setGeometry(sceneWidth / 2 - (3 * selectWidth) / 2 + i * selectWidth, sceneHeight / 2 + selectHeight / 2, selectWidth, 30);
+        QPushButton* levelButton = new QPushButton();
+        //levelButton->setGeometry(sceneWidth / 2 - (3 * selectWidth) / 2 + i * selectWidth, sceneHeight / 2 + selectHeight / 2, selectWidth, 30);
+        int buttonX = sceneWidth / 2 - (3 * selectWidth) / 2 + i * (selectWidth + 20);  // Adjust the space (20) between buttons
+        int buttonY = sceneHeight / 2 + selectHeight / 2;
+
+        levelButton->setGeometry(buttonX, buttonY, selectWidth, 30);
+
+        // Create a linear gradient for the button background
+        QLinearGradient linearGrad(QPointF(0, 0), QPointF(levelButton->width(), levelButton->height()));
+        linearGrad.setColorAt(0, Qt::red);
+        linearGrad.setColorAt(1, Qt::blue);
+
+        // Set the linear gradient as the background for the button using a style sheet
+        levelButton->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 red, stop:1 blue);color:white;");
         scene->addWidget(levelButton);
 
         // Connect the button clicked signal to the slot based on the level
         switch (i) {
         case 0:
+            levelButton->setText("Easy");
             connect(levelButton, &QPushButton::clicked, this, &Game::startLevel1);
             break;
         case 1:
+            levelButton->setText("Medium");
             connect(levelButton, &QPushButton::clicked, this, &Game::startLevel2);
             break;
         case 2:
+            levelButton->setText("Hard");
             connect(levelButton, &QPushButton::clicked, this, &Game::startLevel3);
             break;
         default:
@@ -128,6 +146,7 @@ void Game::SelectLevel(){
 
     QPushButton* backButton = new QPushButton("Next");
                               backButton->setGeometry(sceneWidth / 2 - 100, sceneHeight - 200, 200, 30);
+                              backButton->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 green, stop:1 blue);color:white;");
     scene->addWidget(backButton);
 
     // Connect the button clicked signal to the slot
@@ -137,6 +156,7 @@ void Game::SelectLevel(){
 
 
 void Game::CharForGame(){
+    startButton ->hide();
     selectLevelButton ->hide();
     charachter->hide();
     gun -> hide();
@@ -178,7 +198,20 @@ void Game::CharForGame(){
 
         // Create a QPushButton for each gun
         QPushButton* gunButton = new QPushButton("Select character");
-        gunButton->setGeometry(sceneWidth / 2 - (3 * playerWidth) / 2 + i * playerWidth, sceneHeight / 2 + playerHeight / 2, playerWidth, 30);
+        //gunButton->setGeometry(sceneWidth / 2 - (3 * playerWidth) / 2 + i * playerWidth, sceneHeight / 2 + playerHeight / 2, playerWidth, 30);
+        int buttonX = sceneWidth / 2 - (3 * playerWidth) / 2 + i * (playerWidth + 20);  // Adjust the space (20) between buttons
+        int buttonY = sceneHeight / 2 + playerHeight / 2;
+
+        gunButton->setGeometry(buttonX, buttonY, playerWidth, 30);
+
+
+        // Create a linear gradient for the button background
+        QLinearGradient linearGrad(QPointF(0, 0), QPointF(gunButton->width(), gunButton->height()));
+        linearGrad.setColorAt(0, Qt::red);
+        linearGrad.setColorAt(1, Qt::blue);
+
+        // Set the linear gradient as the background for the button using a style sheet
+        gunButton->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 red, stop:1 blue);color:white;");
         scene->addWidget(gunButton);
 
         // Connect the button clicked signal to the slot
@@ -187,6 +220,7 @@ void Game::CharForGame(){
 
     QPushButton* backButton = new QPushButton("Next");
                               backButton->setGeometry(sceneWidth / 2 - 100, sceneHeight - 200, 200, 30);
+                              backButton->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 green, stop:1 blue);color:white;");
     scene->addWidget(backButton);
 
     // Connect the button clicked signal to the slot
@@ -232,6 +266,7 @@ void Game::spawnEnemies(int velocity)
     timer->start(velocity);
 }
 void Game::GunForGame() {
+    startButton ->show();
     selectLevelButton ->hide();
     charachter->hide();  // Assuming charachter is a typo and should be character
     gun->hide();
@@ -275,7 +310,19 @@ void Game::GunForGame() {
 
         // Create a QPushButton for each gun
         QPushButton* gunButton = new QPushButton("Select gun");
-        gunButton->setGeometry(sceneWidth / 2 - (3 * gunWidth) / 2 + i * gunWidth, sceneHeight / 2 + gunHeight / 2, gunWidth, 30);
+        //gunButton->setGeometry(sceneWidth / 2 - (3 * gunWidth) / 2 + i * gunWidth, sceneHeight / 2 + gunHeight / 2, gunWidth, 30);
+        int buttonX = sceneWidth / 2 - (3 * gunWidth) / 2 + i * (gunWidth + 20);  // Adjust the space (20) between buttons
+        int buttonY = sceneHeight / 2 + gunHeight / 2;
+
+        gunButton->setGeometry(buttonX, buttonY, gunWidth, 30);
+
+        // Create a linear gradient for the button background
+        QLinearGradient linearGrad(QPointF(0, 0), QPointF(gunButton->width(), gunButton->height()));
+        linearGrad.setColorAt(0, Qt::red);
+        linearGrad.setColorAt(1, Qt::blue);
+
+        // Set the linear gradient as the background for the button using a style sheet
+        gunButton->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 red, stop:1 blue);color:white;");
         scene->addWidget(gunButton);
 
         // Connect the button clicked signal to the slot
