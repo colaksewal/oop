@@ -11,6 +11,7 @@
 #include <QGraphicsProxyWidget>
 #include <QVector>
 #include <QPropertyAnimation>
+#include "Timer.h"
 
 class Game: public QGraphicsView
 {
@@ -57,7 +58,12 @@ public:
     void startLevel3();
     void animationFinished();
 
+ private:
+    // ...
+        Timer* timer0;
 
+    private slots:
+        void handleTimerExpired();
 
 };
 
