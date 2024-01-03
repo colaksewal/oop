@@ -13,8 +13,9 @@
 #include "Player.h"
 #include "Health.h"
 #include "Enemy.h"
+#include "Timer.h"
 
-Game::Game(QWidget* parent) : QGraphicsView(parent) {
+Game::Game(QWidget* parent) : QGraphicsView(parent),timer0(nullptr) {
     // we write code block to create a scene
 
     //GİRİŞ EKRANI
@@ -409,6 +410,15 @@ void Game::SetScene() {
     health = new Health();
     health->setPos(health->x(), health->y() + 25);
     scene->addItem(health);
+
+     //create timer
+    // Create countdown timer
+    Timer* timer0 = new Timer();
+    timer0->setPos(1000, 0);  // Position the timer at the top right corner
+    scene->addItem(timer0);
+
+    // Connect the countdown timer's timeExpired signal to the gameOver slot
+    connect(timer0, &Timer::timeExpired, this, &Game::gameOver);
 
     // spawn enemies
     QTimer* timer = new QTimer();
