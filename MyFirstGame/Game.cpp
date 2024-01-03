@@ -191,35 +191,41 @@ void Game::CharForGame(){
     scene->addItem(backgroundItem);
 
     int playerWidth = 100;  // Adjust the width of the gun images
-    int playerHeight = 100;  // Adjust the height of the gun images
+    int playerHeight = 70;  // Adjust the height of the gun images
 
-    for (int i = 0; i < 3; ++i) {
-        QPixmap playerImage(":image/images/player" + QString::number(i + 1) + ".png");  // Assuming gun images are named gun1.png, gun2.png, etc.
+    for (int i = 0; i < 5; ++i) {
+        // Oyuncu görüntülerini oluştur
+        QPixmap playerImage(":image/images/player" + QString::number(i + 1) + ".png");
         QGraphicsPixmapItem* playerItem = new QGraphicsPixmapItem(playerImage);
-        playerItem->setPos(sceneWidth / 2 - (3 * playerWidth) / 2 + i * playerWidth, sceneHeight / 2 - playerHeight / 2);
+
+        // Adjust the position of player images
+        int playerX = sceneWidth / 2 - (5 * playerWidth) / 2 + i * (playerWidth + 40);
+        int playerY = sceneHeight / 2 - playerHeight - 20;
+        playerItem->setPos(playerX, playerY);
         scene->addItem(playerItem);
 
-        // Create a QPushButton for each gun
+        //Create character selection buttons
         QPushButton* gunButton = new QPushButton("Select character");
-        //gunButton->setGeometry(sceneWidth / 2 - (3 * playerWidth) / 2 + i * playerWidth, sceneHeight / 2 + playerHeight / 2, playerWidth, 30);
-        int buttonX = sceneWidth / 2 - (3 * playerWidth) / 2 + i * (playerWidth + 20);  // Adjust the space (20) between buttons
-        int buttonY = sceneHeight / 2 + playerHeight / 2;
 
+        // Set the position and size of character selection buttons
+        int buttonX = sceneWidth / 2 - (5 * playerWidth) / 2 + i * (playerWidth + 40);
+        int buttonY = sceneHeight / 2 + playerHeight / 2;
         gunButton->setGeometry(buttonX, buttonY, playerWidth, 30);
 
-
-        // Create a linear gradient for the button background
+        // Set the background of character selection buttons
         QLinearGradient linearGrad(QPointF(0, 0), QPointF(gunButton->width(), gunButton->height()));
         linearGrad.setColorAt(0, Qt::red);
         linearGrad.setColorAt(1, Qt::blue);
-
-        // Set the linear gradient as the background for the button using a style sheet
         gunButton->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 red, stop:1 blue);color:white;");
-        scene->addWidget(gunButton);
 
-        // Connect the button clicked signal to the slot
+      // Establish signal-slot connection to synchronize
         connect(gunButton, &QPushButton::clicked, this, [this, i]() { onPlayerButtonClicked(i); });
+
+        // Add character selection buttons to the scene
+        scene->addWidget(gunButton);
     }
+
+
 
     QPushButton* backButton = new QPushButton("Next");
                               backButton->setGeometry(sceneWidth / 2 - 100, sceneHeight - 200, 200, 30);
@@ -303,36 +309,39 @@ void Game::GunForGame() {
 
     // Gun images
     int gunWidth = 100;  // Adjust the width of the gun images
-    int gunHeight = 100;  // Adjust the height of the gun images
+    int gunHeight = 70;  // Adjust the height of the gun images
 
-    for (int i = 0; i < 3; ++i) {
-        QPixmap gunImage(":image/images/bullet" + QString::number(i + 1) + ".png");  // Assuming gun images are named gun1.png, gun2.png, etc.
+    for (int i = 0; i < 5; ++i) {
+        // Silah resimlerini oluştur
+        QPixmap gunImage(":image/images/bullet" + QString::number(i + 1) + ".png");
         QGraphicsPixmapItem* gunItem = new QGraphicsPixmapItem(gunImage);
-        gunItem->setPos(sceneWidth / 2 - (3 * gunWidth) / 2 + i * gunWidth, sceneHeight / 2 - gunHeight / 2);
+
+        int spaceBetweenGuns = 55;  // İhtiyaca göre boşluğu ayarlayın
+        gunItem->setPos(sceneWidth / 2 - (5 * gunWidth) + 200 + i * (gunWidth + spaceBetweenGuns), sceneHeight / 2 - gunHeight / 2 + 15);
         scene->addItem(gunItem);
 
-        // Create a QPushButton for each gun
+        // Silah seçimi butonlarını oluştur
         QPushButton* gunButton = new QPushButton("Select gun");
-        //gunButton->setGeometry(sceneWidth / 2 - (3 * gunWidth) / 2 + i * gunWidth, sceneHeight / 2 + gunHeight / 2, gunWidth, 30);
-        int buttonX = sceneWidth / 2 - (3 * gunWidth) / 2 + i * (gunWidth + 20);  // Adjust the space (20) between buttons
+
+        // Silah seçimi butonlarının pozisyonunu ve boyutunu ayarla
+        int buttonX = sceneWidth / 2 - (5 * gunWidth) + 175 + i * (gunWidth + spaceBetweenGuns);
         int buttonY = sceneHeight / 2 + gunHeight / 2;
 
         gunButton->setGeometry(buttonX, buttonY, gunWidth, 30);
 
-        // Create a linear gradient for the button background
+        // Silah seçimi butonlarının arkaplanını ayarla
         QLinearGradient linearGrad(QPointF(0, 0), QPointF(gunButton->width(), gunButton->height()));
         linearGrad.setColorAt(0, Qt::red);
         linearGrad.setColorAt(1, Qt::blue);
 
-        // Set the linear gradient as the background for the button using a style sheet
         gunButton->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 red, stop:1 blue);color:white;");
-        scene->addWidget(gunButton);
 
-        // Connect the button clicked signal to the slot
+        // Senkronize etmek için sinyal-slot bağlantısı kur
         connect(gunButton, &QPushButton::clicked, this, [this, i]() { onGunButtonClicked(i); });
+
+        // Sahneye silah seçimi butonlarını ekle
+        scene->addWidget(gunButton);
     }
-
-
 }
 
 
