@@ -14,6 +14,7 @@ EnemyChild::EnemyChild(QGraphicsItem *parent, int velocity) : Enemy(parent)
     connect(timer,SIGNAL(timeout() ) , this,SLOT(move()));
 
     this-> velocity = velocity;
+    velocity = velocity +200;
     timer -> start(velocity);
 }
 

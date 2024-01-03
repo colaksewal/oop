@@ -38,6 +38,8 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
     startButton->move((width() - startButton->width()) / 2, height() - startButton->height() - 20);
 
     connect(startButton, &QPushButton::clicked, this, &Game::startGame);
+    startButton -> hide();
+
 
     //create add Character
     charachter = new QPushButton("Karakter Seç", this);
@@ -45,6 +47,7 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
     charachter ->  setFont(QFont("Arial", 16));
     charachter ->move ((width() - charachter->width()) / 2, height() - charachter->height() - 160);
     connect(charachter, &QPushButton::clicked, this, &Game::CharForGame);
+    charachter -> hide();
 
     //gun screen for add Character
     gun = new QPushButton("Silah Seç", this);
@@ -52,7 +55,7 @@ Game::Game(QWidget* parent) : QGraphicsView(parent) {
     gun ->  setFont(QFont("Arial", 16));
     gun ->move ((width() - gun->width()) / 2, height() - gun->height() - 280);
     connect(gun, &QPushButton::clicked, this, &Game::GunForGame);
-
+    gun -> hide();
 
     //level button
     selectLevelButton = new QPushButton("Selection",this);

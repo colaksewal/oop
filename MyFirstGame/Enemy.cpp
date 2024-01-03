@@ -26,6 +26,7 @@ Enemy::Enemy(QGraphicsItem *parent, int velocity): QObject(), QGraphicsPixmapIte
 
 
     this-> velocity = velocity;
+    velocity = velocity +200;
     timer -> start(velocity);
 }
 
