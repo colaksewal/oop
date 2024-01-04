@@ -9,11 +9,11 @@
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QPropertyAnimation>
+#include <QGraphicsVideoItem>
 #include <QDebug>
 #include "Player.h"
 #include "Health.h"
 #include "Enemy.h"
-#include "Timer.h"
 
 Game::Game(QWidget* parent) : QGraphicsView(parent),timer0(nullptr) {
     // we write code block to create a scene
@@ -393,9 +393,22 @@ void Game::SetScene() {
     setFixedSize(1200, 800);
 
     // background
-    QPixmap backgroundImage(":image/images/background.jpg");
-    QGraphicsPixmapItem* backgroundItem = new QGraphicsPixmapItem(backgroundImage);
-    scene->addItem(backgroundItem);
+    QMediaPlayer *video = new QMediaPlayer;
+
+    QGraphicsVideoItem *videoItem = new QGraphicsVideoItem;
+    video->setVideoOutput(videoItem);
+
+    video->setSource(QUrl("qrc:/musics/video.mp4"));
+    video-> play();
+
+    videoItem->setZValue(-1);
+
+    // Set the video item to cover the entire scene
+    videoItem->setSize(scene->sceneRect().size());
+
+    // Video öğesini sahneye ekle (arka plan olarak)
+    scene->addItem(videoItem);
+
 
     // create the player
     player = new Player(nullptr, selectedGunIndex);

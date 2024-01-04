@@ -20,5 +20,6 @@
     </qresource>
     <qresource prefix="/musics">
         <file>sounds.mp3</file>
+        <file>video.mp4</file>
     </qresource>
 </RCC>

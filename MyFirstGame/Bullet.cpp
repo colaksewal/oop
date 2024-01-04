@@ -32,8 +32,6 @@ Bullet::Bullet(QGraphicsItem *parent , int gunIndex):QObject () ,QGraphicsPixmap
     timer1 -> start(50);
 }
 
-
-
 void Bullet :: move1(){
 
     QList<QGraphicsItem * > colliding_items = collidingItems();
@@ -59,13 +57,11 @@ void Bullet :: move1(){
         scene() -> removeItem(this);
         delete this;
     }
-
 }
 
 void Bullet::move()
 {
     //if bullet collides with enemy, destrpy both
-
     QList<QGraphicsItem *> colliding_items = collidingItems() ;
     for(int i = 0 , n = colliding_items.size() ; i<n ; ++i){
         if(typeid(*(colliding_items[i])) == typeid(Enemy)){
@@ -80,7 +76,6 @@ void Bullet::move()
             return;
         }
     }
-
     //move bulletet up
     setPos(x(), y()-10);
     if(pos().y()  < 0 ){
@@ -93,4 +88,3 @@ bool Bullet::operator==(const Bullet& other) const
 {
     return (pos() == other.pos());
 }
-
