@@ -228,14 +228,14 @@ void Game::CharForGame(){
 
 
 
-    QPushButton* backButton = new QPushButton("Next");
-                              backButton->setGeometry(sceneWidth / 2 - 100, sceneHeight - 200, 200, 30);
-                              backButton->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 green, stop:1 blue);color:white;");
-    scene->addWidget(backButton);
+    QPushButton* nextButton = new QPushButton("Next");
+                              nextButton->setGeometry(sceneWidth / 2 - 100, sceneHeight - 200, 200, 30);
+                              nextButton->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 green, stop:1 blue);color:white;");
+    scene->addWidget(nextButton);
 
     // Connect the button clicked signal to the slot
     //connect(backButton, &QPushButton::clicked, this, &Game::goBack);
-    connect(backButton, &QPushButton::clicked, this, &Game::GunForGame);
+    connect(nextButton, &QPushButton::clicked, this, &Game::GunForGame);
 }
 
 
@@ -248,23 +248,20 @@ void Game::onPlayerButtonClicked(int playerIndex) {
 
 void Game::startLevel1() {
     velocity = 500;
+    //Start level 1
     qDebug() << "Starting Level 1";
-    // You can add code here to initialize and set up your game for Level 1
 }
 
 void Game::startLevel2() {
     velocity = 200;
-    // Implement logic to start level 2
+    //Start level 2
     qDebug() << "Starting Level 2";
-    // You can add code here to initialize and set up your game for Level 2
 }
 
 void Game::startLevel3() {
     velocity = 50;
-
-    // Implement logic to start level 3
+    //Start level 3
     qDebug() << "Starting Level 3";
-    // You can add code here to initialize and set up your game for Level 3
 }
 
 void Game::spawnEnemies(int velocity)
@@ -361,9 +358,6 @@ void Game::startGame() {
     charachter->hide();
     gun -> hide();
     SetScene();
-
-    // addPlayerToScreen(player);
-    // ... (diğer oyun başlatma işlemleri)
 }
 
 void Game::SetScene() {
