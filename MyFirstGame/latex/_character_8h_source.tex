@@ -1,0 +1,28 @@
+\doxysection{Character.\+h}
+\hypertarget{_character_8h_source}{}\label{_character_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CHARACTER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CHARACTER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QGraphicsPixmapItem>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QGraphicsSceneMouseEvent>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_character}{Character}}\ :\ \textcolor{keyword}{public}\ QObject,\ \textcolor{keyword}{public}\ QGraphicsPixmapItem\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_character}{Character}}(\textcolor{keyword}{const}\ QString\&\ imagePath,\ QGraphicsItem\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_character}{\string~Character}}();}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ mousePressEvent(QGraphicsSceneMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ signals:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ characterSelected(\textcolor{keyword}{const}\ QString\&\ characterName);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ \ \ QString\ characterName;}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CHARACTER\_H}}
+
+\end{DoxyCode}

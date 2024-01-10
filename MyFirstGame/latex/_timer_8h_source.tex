@@ -1,0 +1,31 @@
+\doxysection{Timer.\+h}
+\hypertarget{_timer_8h_source}{}\label{_timer_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TIMER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TIMER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QGraphicsTextItem>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_timer}{Timer}}\ :\ \textcolor{keyword}{public}\ QGraphicsTextItem\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_timer}{Timer}}(QGraphicsItem\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{void}\ decrease();}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ getTime();}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ timerEvent(QTimerEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ signals:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ timeExpired();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ timeCount;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ timerId;\ \ \textcolor{comment}{//\ Added\ member\ variable\ to\ store\ the\ timer\ ID}}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TIMER\_H}}
+\DoxyCodeLine{00026\ }
+
+\end{DoxyCode}
