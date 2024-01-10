@@ -5,3 +5,4 @@
 ### 4. After our codes are opened in the Qt window, we start our game by pressing the 'Run' button.
 ### 5. In our game, the player moves with the arrow keys of the keyboard and sends bullets to the enemies with the space key.
 #### [Click here for the video of the game](https://drive.google.com/file/d/1tpcYHgthLx0o0OlupZpAIhaoXN_2qpST/view)
+##### We add doxygen files in the project html part. In html files, you should run index.html
